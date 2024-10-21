@@ -1,5 +1,5 @@
 package com.tech.entities;
-
+///test
 public class Category 
 {
 	private int cid;
