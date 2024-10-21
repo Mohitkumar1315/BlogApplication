@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Tech-Blog_Login</title>
+<title>Tech-Blog_Login ....</title>
 </head>
 <body>
 	<%@include file="script.jsp"%>
