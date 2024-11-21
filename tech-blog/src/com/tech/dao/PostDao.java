@@ -143,4 +143,31 @@ public class PostDao
     	
     	return p;
     }
+    public ArrayList<Post> getPostByCatId(int catId) {
+    	System.out.println("Get all post using CatID");
+        ArrayList<Post> postList = new ArrayList<>();
+        String query = "select * from post where catId=?";
+        try {
+            PreparedStatement pst = this.con.prepareStatement(query);
+            pst.setInt(1, catId);
+            ResultSet set = pst.executeQuery();
+            while (set.next()) {
+                Post p = new Post();
+                p.setCatId(set.getInt("catId"));
+                p.setpCode(set.getString("pCode"));
+                p.setpContent(set.getString("pContent"));
+                p.setpDate(set.getTimestamp("pDate"));
+                p.setPid(set.getInt("pId"));
+                p.setpPic(set.getString("pPic"));
+                p.setpTitle(set.getString("pTitle"));
+                p.setUser_id(set.getInt("user_id"));
+                postList.add(p);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return postList;
+    }
+
+
 }
