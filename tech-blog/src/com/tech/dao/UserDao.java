@@ -33,28 +33,27 @@ public class UserDao
 		}
 		return true;
 	}
-	public User getUserByEmailAndPassword(String email, String user_password) {
-//	    System.out.println("Hello");
-//	    System.out.println(email);
-//	    System.out.println(user_password);
+	public User getUserByEmailAndPassword(String email, String user_password,String loginRole) {
 	    User user = null;
 	    try {
-	        String query = "select * from user where email=? and password=?";
+	        String query = "select * from user where email=? and password=? and user_role=?";
 	        PreparedStatement pst = con.prepareStatement(query);
 	        pst.setString(1, email);
 	        pst.setString(2, user_password);
+	        pst.setString(3, loginRole);
 	        ResultSet rs = pst.executeQuery();
 	        if (rs.next()) 
 	        {
 	            user = new User();
 	            user.setId(rs.getInt("id"));
 	            user.setName(rs.getString("name"));
-	            user.setPassword(rs.getString("password")); // Corrected
-	            user.setEmail(rs.getString("email")); // Corrected
-	            user.setAbout(rs.getString("about")); // Corrected
-	            user.setGender(rs.getString("gender")); // Corrected
+	            user.setPassword(rs.getString("password")); 
+	            user.setEmail(rs.getString("email")); 
+	            user.setAbout(rs.getString("about")); 
+	            user.setGender(rs.getString("gender")); 
 	            user.setRdate(rs.getTimestamp("rdate"));
 	            user.setProfile(rs.getString("profile"));
+	            user.setUserRole("user_role");
 	        } 
 	        else {	        
 	            System.out.println("error");
@@ -77,10 +76,10 @@ public class UserDao
 		    	user=new User();
 		    	 user.setId(rs.getInt("id"));
 		            user.setName(rs.getString("name"));
-		            user.setPassword(rs.getString("password")); // Corrected
-		            user.setEmail(rs.getString("email")); // Corrected
-		            user.setAbout(rs.getString("about")); // Corrected
-		            user.setGender(rs.getString("gender")); // Corrected
+		            user.setPassword(rs.getString("password")); 
+		            user.setEmail(rs.getString("email")); 
+		            user.setAbout(rs.getString("about")); 
+		            user.setGender(rs.getString("gender")); 
 		            user.setRdate(rs.getTimestamp("rdate"));
 		            user.setProfile(rs.getString("profile"));
 		    }

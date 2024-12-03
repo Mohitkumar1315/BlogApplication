@@ -12,12 +12,21 @@ public  class User
     private String about;
     private Timestamp rdate;
     private String profile;
+    private String userRole;
     
-    public User() {
+    public String getUserRole() {
+		return userRole;
+	}
+
+	public void setUserRole(String userRole) {
+		this.userRole = userRole;
+	}
+
+	public User() {
     }
 
     //constructor 1
-    public User(int id ,String name, String email, String password, String gender, String about, Timestamp rdate,String profile) {
+    public User(int id ,String name, String email, String password, String gender, String about, Timestamp rdate,String profile,String userRole) {
         this.id=id;
     	this.name = name;
         this.email = email;
@@ -26,9 +35,10 @@ public  class User
         this.about = about;
         this.rdate=rdate;
         this.profile=profile;
+        this.userRole=userRole;
     }
     //constructor 2 without passing  id 
-    public User(String name, String email, String password, String gender, String about, Timestamp rdate,String profile) 
+    public User(String name, String email, String password, String gender, String about, Timestamp rdate,String profile,String userRole) 
     {
     	this.name = name;
         this.email = email;
@@ -37,6 +47,7 @@ public  class User
         this.about = about;
         this.rdate=rdate;
         this.profile=profile;
+        this.userRole=userRole;
     }
     
 //  getter & setters

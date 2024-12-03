@@ -54,8 +54,10 @@ public class login_servlet extends HttpServlet {
 		User user=null;
 		String userEmail=req.getParameter("user_email");
 		String userPassword=req.getParameter("user_password");
+		String loginRole=req.getParameter("login_role");
 		UserDao userDao=new UserDao(ConnectionProvider.getConnection());
-		user=userDao.getUserByEmailAndPassword(userEmail, userPassword);
+		user=userDao.getUserByEmailAndPassword(userEmail, userPassword,loginRole);
+		System.out.println("User role for redirecting pages:"+loginRole);
 		if(user==null)
 		{
 			System.out.println("Hello session ");
@@ -66,10 +68,20 @@ public class login_servlet extends HttpServlet {
 		}
 		else
 		{
-			HttpSession session=req.getSession();
-			session.setAttribute("current_user", user);
-			rep.sendRedirect("User_profile.jsp");
+			if(user.getUserRole().equals("User"))
+			{
+				HttpSession session=req.getSession();
+				session.setAttribute("current_user", user);
+				rep.sendRedirect("User_profile.jsp");
+			}
+			else 
+			{
+				HttpSession session=req.getSession();
+				session.setAttribute("current_user", user);
+				rep.sendRedirect("Admin/adminProfile.jsp");
+			}
 		}
+			
 	}
 
 }

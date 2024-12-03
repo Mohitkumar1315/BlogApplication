@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="CSS/style.css" rel='stylesheet'>
     <style>
+    	
         .banner-background {
             clip-path: polygon(30% 0%, 70% 0%, 100% 0, 100% 96%, 63% 100%, 22% 91%, 0 94%, 0 0);
         }
@@ -75,14 +76,63 @@
 
             <!-- Main Content -->
             <div class="col-md-9" id="main-content">
-                <h2>Welcome to the Blogs</h2>
+                <h2 >Welcome to the Blogs</h2>
                 <p>Select a category from the sidebar to explore related blogs.</p>
                 <div id="post-container">
                     <!-- Posts will be loaded here -->
                 </div>
-            </div>
+           </div>
         </div>
     </div>
+       
+ <footer class="footer mt-5 py-4 primary-background text-white">
+        <div class="container">
+            <div class="row">
+                <!-- Logo and About -->
+                <div class="col-md-4">
+                    <h4 class="mb-3">LCWM LOGO</h4>
+                    <p><strong><u>Learn Code With KaBir</u></strong></p>
+                    <p>Learn Code With KaBir offers a wide variety of free and premium courses on the YouTube channel and website. We are serving lakhs of students and professionals.</p>
+                    <p><strong>!! Happy Coding !!</strong></p>
+                </div>
+
+                <!-- Products -->
+                <div class="col-md-4">
+                    <h5 class="mb-3">Products</h5>
+                    <ul class="list-unstyled">
+                        <li>Master Spring Boot With Project Course</li>
+                        <li>React Js Ecommerce Project Course</li>
+                        <li>React + Spring Boot Full Stack</li>
+                        <li>Free Courses</li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div class="col-md-4">
+                    <h5 class="mb-3">Contact</h5>
+                    <p>KaBir s/w solution Technologies, Saharanpur, INDIA,247451</p>
+                    <p>Email: mvkrampur1315@gmail.com</p>
+                    <p>Phone: +91-7895569366</p>
+                    <h6 class="mt-3">Get In Touch</h6>
+                    <div>
+                        <a href="#" class="text-white mr-3" aria-label="YouTube"><span class="fa fa-youtube"></span> YouTube</a>
+                        <a href="#" class="text-white mr-3" aria-label="Facebook"><span class="fa fa-facebook"></span> Facebook</a>
+                        <a href="#" class="text-white mr-3" aria-label="Instagram"><span class="fa fa-instagram"></span> Instagram</a>
+                        <a href="#" class="text-white" aria-label="LinkedIn"><span class="fa fa-linkedin"></span> LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col text-center">
+                    <p>Copyright © 2023: Substring Technologies Pvt Ltd. All Rights Reserved.</p>
+                    <a href="#" class="text-white">Refund Policy</a> | 
+                    <a href="#" class="text-white">Privacy Policy</a> | 
+                    <a href="#" class="text-white">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7HibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

@@ -1,6 +1,7 @@
-body
-{
-	backgsround: orange;
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 .primary-background{
 	background-color: yellowgreen!important;
@@ -67,3 +68,27 @@ body
         .read-more-btn:hover {
             background-color: darkgreen;
         }
+ .footer {
+    background-color: #007bff; /* Matches primary background */
+    color: white;
+    padding: 20px 0;
+    font-size: 0.9rem;
+}
+
+.footer h4, .footer h5 {
+    color: white;
+}
+
+.footer a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: lightgray;
+    text-decoration: underline;
+}
+
+        
+        
+        

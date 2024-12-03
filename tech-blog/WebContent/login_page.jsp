@@ -15,7 +15,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4 offset-md-4">
-					<div class="card">  <!-- card ke hote hai 3 section header, body, footer -->
+					<div class="card">
 					 	<div class="card-header primary-background text-white text-center">
 					 		<SPAN CLASS="fa fa-user-plus fa-3x"></SPAN>
 					 		<br>
@@ -23,8 +23,8 @@
 						</div>						
 						<!-- error box -->
 						<%
-							Message msg=(Message)session.getAttribute("msg");
-							if(msg!=null)
+							Message msg = (Message)session.getAttribute("msg");
+							if(msg != null)
 							{
 								%>
 									<div class="alert <%=msg.getCssClass() %>" role="alert">
@@ -45,7 +45,15 @@
   									  <label for="exampleInputPassword1" style="color:black">Password</label>
  								      <input type="password"  name="user_password" class="form-control" id="exampleInputPassword1">
  								 </div>
-  								<div class="form-group form-check" >
+  								<div class="form-group">
+  									<label for="loginRole" style="color:black">Login As:</label>
+  									<input type="radio" id="admin" name="login_role" value="Admin" required>
+  									<label for="admin" style="color:black">Admin</label>
+  									<input type="radio" id="user" name="login_role" value="User" required >
+  									<label for="user" style="color:black">User</label>
+  									
+  								</div>
+  								<div class="form-group form-check">
   									  <input type="checkbox" name="check" required="required" class="form-check-input" id="exampleCheck1">
   									  <label class="form-check-label" for="exampleCheck1" style="color:black">Check me out</label>
   								</div>
@@ -53,11 +61,11 @@
  									 <button type="submit" class="btn primary-background text-white">Submit</button>
  								</div>
 							</form>
-					</div>
+						</div>
 					</div>
 				</div>
 			</div>			
 		</div>		
 	</main>
-</body>
+</body> 
 </html>

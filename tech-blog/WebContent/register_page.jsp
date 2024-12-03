@@ -52,7 +52,7 @@
 	 			  <div class="card-header text-center">
 	 			  	<span class="fa fa-3x fa-user-circle"></span>
 	 			  	<br>
-	 			  	Register Here
+	 			  	User Registration 
 	 			  </div>
 	 			  <div class="card-body">
 	 			  	<form id="reg-form" action="RegisterServlet" method="Post">

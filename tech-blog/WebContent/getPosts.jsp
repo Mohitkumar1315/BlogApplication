@@ -68,7 +68,7 @@
     %>
         <div class="post-card">
             <div>
-                <div class="post-title"><%= p.getpTitle() %></div>
+                <div class="post-title"  ><%= p.getpTitle()%></div>
                 <p class="post-excerpt text-muted">
                     This is a preview of the post. Click "Read More" to view full details.
                 </p>
