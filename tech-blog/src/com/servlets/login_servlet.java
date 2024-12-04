@@ -68,6 +68,7 @@ public class login_servlet extends HttpServlet {
 			HttpSession session =req.getSession();
 			session.setAttribute("current_user", user);
 			rep.sendRedirect("Admin/adminProfile.jsp");
+			//rep.sendRedirect("User_profile.jsp");
 		}
 		else  
 			if(user.getUserRole().equals("User")&&loginRole.equals("User")) 
@@ -76,6 +77,12 @@ public class login_servlet extends HttpServlet {
 				HttpSession session =req.getSession();
 				session.setAttribute("current_user", user);
 				rep.sendRedirect("User_profile.jsp");
+			}
+			else {
+				Message message=new Message("Invalid Details ! try with another Role","error","alert-danger");
+				HttpSession session =req.getSession();
+				session.setAttribute("msg", message);
+				rep.sendRedirect("login_page.jsp");
 			}
 
 	}

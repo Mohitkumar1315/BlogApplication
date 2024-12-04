@@ -70,7 +70,6 @@ public class EditServlet extends HttpServlet {
 		boolean updateStatus=userDao.updateUser(user);
 		if(updateStatus)
 		{
-			out.println("Update successfully");
 			String  path=req.getRealPath("/")+"pics"+File.separator+user.getProfile() ;
 			//  for remving old pic
 		//	String  path=req.getRealPath("/")+"pics"+File.separator+user.getProfile() ;
@@ -91,6 +90,13 @@ public class EditServlet extends HttpServlet {
 			Message msg=new Message("Someting went wrong  ", "faild", "alert-danger");
 			s.setAttribute("msg", msg);
 		}
+		if(user.getUserRole().equals("User"))
+		{
 		rep.sendRedirect("User_profile.jsp");
+		}
+		else
+		{
+			rep.sendRedirect("Admin/adminProfile.jsp");
+		}
 	}	
 }
