@@ -11,8 +11,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
-<script>
-																		
+<script>																		
 </script>
 </head>
 <body>
@@ -22,7 +21,8 @@
 	{
 		response.sendRedirect("login_page.jsp");
 	}
-	
+	String jwtToken = (String) session.getAttribute("jwtToken");
+	System.out.println("JWT token in USerProfle"+jwtToken);
 %>
 	<%@include file="script.jsp"%>
 	<nav class="navbar navbar-expand-lg navbar-dark primary-background">

@@ -38,12 +38,12 @@
 						 	 <form action="login_servlet" method="POST">
   								<div class="form-group">
   								   <label for="exampleInputEmail1" name="user_email" style="color:black">Email Id</label>
-  								   <input type="email" class="form-control" name="user_email" id="exampleInputEmail1" aria-describedby="emailHelp">
+  								   <input type="email" class="form-control" name="user_email" id="exampleInputEmail1" aria-describedby="emailHelp" required>
  								   <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
  								</div>
   								<div class="form-group">
   									  <label for="exampleInputPassword1" style="color:black">Password</label>
- 								      <input type="password"  name="user_password" class="form-control" id="exampleInputPassword1">
+ 								      <input type="password"  name="user_password" class="form-control" id="exampleInputPassword1"required>
  								 </div>
   								<div class="form-group">
   									<label for="loginRole" style="color:black">Login As:</label>
