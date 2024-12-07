@@ -9,9 +9,8 @@
 <%@page import="com.auth0.jwt.exceptions.JWTVerificationException"%>
 <%@page import="com.auth0.jwt.interfaces.DecodedJWT"%>
 <%@page import="com.tech.helper.JwtHelper"%>
-
 <%
-    // Retrieve the JWT token from the session or request header
+	// Retrieve the JWT token from the session or request header
     String token = (String) session.getAttribute("jwtToken"); // Ensure this matches the attribute set in user_profile.jsp
     User user = (User) session.getAttribute("current_user");
 	
@@ -19,7 +18,6 @@
         out.println("<h5 class='display-3 text-center' style='color:red'>Access Denied. Please log in.</h5>");
         return;
     }
-
     try {
         // Validate the JWT token
         DecodedJWT decodedJWT = JwtHelper.validateToken(token);

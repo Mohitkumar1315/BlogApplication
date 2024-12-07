@@ -53,24 +53,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 
-$(document).ready(function(){
-    console.log("KaBir...");
-    $('#contact-form').on('submit',function(event){
-        event.preventDefault();
-        let form = new FormData(this);            
-        $.ajax({
-            url: "ContactUs_Servlet",
-            type: 'POST', 
-            data: form,            
-            success: function(response) {
-                // Handle success response here
-            },
-            error: function(xhr, status, error) {
-                // Handle error here
-            }
-        });
-    });
-});
+
 
 </script>
 </head>
@@ -131,7 +114,7 @@ $(document).ready(function(){
             <input type="text" id="name" name="name" placeholder="Your name.." required>
 
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Your email.." required>
+            <input type="email" id="email" name="email"placeholder="Your email.." required>
 
             <label for="message">Message</label>
             <textarea id="message" name="message" placeholder="Write something.." style="height:200px" required></textarea>

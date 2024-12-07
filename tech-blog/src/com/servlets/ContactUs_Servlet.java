@@ -2,6 +2,7 @@ package com.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,47 +15,68 @@ import com.tech.dao.ContactDao;
 import com.tech.entities.ContactUs;
 import com.tech.helper.ConnectionProvider;
 
-/**
- * Servlet implementation class ContactUs_Servlet
- */
 @WebServlet("/ContactUs_Servlet")
 public class ContactUs_Servlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    private static final long serialVersionUID = 1L;
+    private static final int PAGE_SIZE = 10; // Number of records per page
+
     public ContactUs_Servlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
-	protected void doGet(HttpServletRequest req, HttpServletResponse rep) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		rep.getWriter().append("Served at: ").append(req.getContextPath());
-//		PrintWriter out=rep.getWriter();
-//		
-		
-	}
-	protected void doPost(HttpServletRequest req, HttpServletResponse rep) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(req, rep);
-		System.out.println("hELLLO TEST");
-		PrintWriter out=rep.getWriter();
-		out.println("Hii kaBir");
-		ContactDao conDao=new ContactDao(ConnectionProvider.getConnection());
-		String email=req.getParameter("name");
-		System.out.println(email);
-		ContactUs contact=new ContactUs(req.getParameter("email"),req.getParameter("name"),req.getParameter("message"));
-		boolean f=conDao.saveContact(contact);
-		if(f)
-		{
-			RequestDispatcher	rd=req.getRequestDispatcher("successContact.jsp");
-			rd.forward(req, rep);
-		}
-		else {		
-		RequestDispatcher	rd=req.getRequestDispatcher("error.jsp");
-			rd.forward(req, rep);
-		}
-	}
+
+    protected void doGet(HttpServletRequest req, HttpServletResponse rep) throws ServletException, IOException {
+        rep.setContentType("application/json");
+        PrintWriter out = rep.getWriter();
+        ContactDao contactDao = new ContactDao(ConnectionProvider.getConnection());
+        List<ContactUs> contactList = contactDao.getContactsByPage();
+
+        // Convert contactList to JSON
+        StringBuilder json = new StringBuilder("[");
+        for (int i = 0; i < contactList.size(); i++) {
+            ContactUs contact = contactList.get(i);
+            json.append(String.format(
+                "{\"name\":\"%s\", \"email\":\"%s\", \"message\":\"%s\"}",
+                contact.getName(), contact.getEmail(), contact.getMessage()
+            ));
+            if (i < contactList.size() - 1) json.append(",");
+        }
+        json.append("]");
+        out.print(json.toString());
+        out.flush();
+    }
+
+
+    protected void doPost(HttpServletRequest req, HttpServletResponse rep) throws ServletException, IOException {
+        PrintWriter out = rep.getWriter();
+
+        try {
+            // Fetch parameters
+            String name = req.getParameter("name");
+            String email = req.getParameter("email");
+            String message = req.getParameter("message");
+
+            if (name == null || email == null || message == null) {
+                out.println("Error: All fields are required.");
+                return;
+            }
+
+            System.out.println("Received: " + name + ", " + email + ", " + message);
+
+            // Save contact details
+            ContactUs contact = new ContactUs(email, name, message);
+            ContactDao contactDao = new ContactDao(ConnectionProvider.getConnection());
+            boolean isSaved = contactDao.saveContact(contact);
+
+            // Redirect based on result
+            if (isSaved) {
+                req.getRequestDispatcher("successContact.jsp").forward(req, rep);
+            } else {
+                req.getRequestDispatcher("error.jsp").forward(req, rep);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            req.getRequestDispatcher("error.jsp").forward(req, rep);
+        }
+    }
 
 }
