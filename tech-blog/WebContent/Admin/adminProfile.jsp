@@ -34,6 +34,9 @@
         .category-list{
         marrgin-top:30px
         }
+        .post-list{
+        marrgin-top:30px
+        }
     </style>
 </head>
 <body>
@@ -67,8 +70,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" id="seeCategoryLink">
-                     <span class="fa fa-asterisk"></span></span> See Post
+                <a class="nav-link" href="#" id="seePostLink">
+                     <span class="fa fa-asterisk"></span>See Post
                 </a>
             </li>
         </ul>
@@ -172,7 +175,24 @@
             </tr>
             </thead>
             <tbody id="categoryTableBody">
-            <!-- Contact list will be appended here -->
+      			<!-- categorie is show here dyanmically using ajax request -->
+            </tbody>
+        </table>
+    </div>
+    <!-- Post -->
+    <div id="postList" class="post-list" style="display: none;">
+        <h3>Category List</h3>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Post.Id</th>
+                <th>Title</th>
+                <th>User Name</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody id="postTableBody">
+      			<!-- Post is show here dyanmically using ajax request -->
             </tbody>
         </table>
     </div>
@@ -180,53 +200,73 @@
 
 <script src="https://code.jquery.com/jquery-3.6.3.min.js" crossorigin="anonymous"></script>
 <script>
-    $(document).ready(function () {
-        $('#seeContactsLink').click(function (e) {
-            e.preventDefault();
+$(document).ready(function () {
+    $('#seeContactsLink').click(function (e) {
+        e.preventDefault();
 
-         
-            $('#categoryList').hide();
-            $('#contactList').show();
-            $('#contactTableBody').html('<tr><td colspan="4">Loading...</td></tr>');
+        $('#categoryList').hide();
+        $('#postList').hide(); // Hide post list as well
+        $('#contactList').show();
+        $('#contactTableBody').html('<tr><td colspan="4">Loading...</td></tr>');
 
-            // Make AJAX request to fetch contact data
-            $.ajax({
-                url: 'seeContact.jsp',
-                method: 'GET',
-                success: function (response) {
-                    $('#contactTableBody').html(response);
-                },
-                error: function () {
-                    $('#contactTableBody').html('<tr><td colspan="4">Error fetching contacts.</td></tr>');
-                }
-            });
+        // Make AJAX request to fetch contact data
+        $.ajax({
+            url: 'seeContact.jsp',
+            method: 'GET',
+            success: function (response) {
+                $('#contactTableBody').html(response);
+            },
+            error: function () {
+                $('#contactTableBody').html('<tr><td colspan="4">Error fetching contacts.</td></tr>');
+            }
         });
     });
-</script>
-<script>
-    $(document).ready(function () { // Corrected syntax here
-        $('#seeCategoryLink').click(function (e) {
-            e.preventDefault();
 
-            // Show loading spinner or message
-            $('#contactList').hide();
-            $('#categoryList').show();
-            
-            $('#categoryTableBody').html('<tr><td colspan="3">Loading...</td></tr>'); // Updated colspan for categories
+    $('#seePostLink').click(function (e) {
+        e.preventDefault();
 
-            // Make AJAX request to fetch category data
-            $.ajax({
-                url: 'seeCategory.jsp', // Ensure this JSP file is correct
-                method: 'GET',
-                success: function (response) {
-                    $('#categoryTableBody').html(response);
-                },
-                error: function () {
-                    $('#categoryTableBody').html('<tr><td colspan="3">Error fetching categories.</td></tr>'); // Updated error message
-                }
-            });
+        // Hide all sections except postList
+        
+        $('#contactList').hide();
+        $('#categoryList').hide();
+        $('#postList').show();
+        $('#postTableBody').html('<tr><td colspan="4">Loading...</td></tr>'); // Ensure the colspan matches the table structure
+
+        // Make AJAX request to fetch post data
+        $.ajax({
+            url: 'seePost.jsp',
+            method: 'GET',
+            success: function (response) {
+                $('#postTableBody').html(response);
+            },
+            error: function () {
+                $('#postTableBody').html('<tr><td colspan="4">Error fetching posts.</td></tr>'); // Ensure the colspan matches
+            }
         });
     });
+
+    $('#seeCategoryLink').click(function (e) {
+        e.preventDefault();
+
+        $('#contactList').hide();
+        $('#postList').hide(); // Hide post list as well
+        $('#categoryList').show();
+        $('#categoryTableBody').html('<tr><td colspan="3">Loading...</td></tr>'); // Adjusted colspan
+
+        // Make AJAX request to fetch category data
+        $.ajax({
+            url: 'seeCategory.jsp', // Ensure this JSP file is correct
+            method: 'GET',
+            success: function (response) {
+                $('#categoryTableBody').html(response);
+            },
+            error: function () {
+                $('#categoryTableBody').html('<tr><td colspan="3">Error fetching categories.</td></tr>'); // Adjusted colspan
+            }
+        });
+    });
+});
+
 </script>
 
 </body>
