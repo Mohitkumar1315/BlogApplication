@@ -32,7 +32,7 @@
             margin-top: 20px;
         }
         .category-list{
-        marrgin-top:20px
+        marrgin-top:30px
         }
     </style>
 </head>
@@ -64,6 +64,11 @@
             <li class="nav-item">
                 <a class="nav-link" href="#" id="seeCategoryLink">
                     <span class="fa fa-shopping-bag"></span> See Category
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" id="seeCategoryLink">
+                     <span class="fa fa-asterisk"></span></span> See Post
                 </a>
             </li>
         </ul>
