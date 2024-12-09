@@ -1,17 +1,38 @@
+<%@page import="com.tech.dao.ContactDao"%>
+<%@page import="com.tech.helper.ConnectionProvider"%>
+<%@page import="com.tech.dao.PostDao"%>
 <%@page import="com.tech.entities.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="ISO-8859-1">
-    <title>Admin Page</title>
+    <title>Admin Dashboard</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="../CSS/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-        .contact-list {
-            display: none;
+        body {
+            background-color: #f4f4f4;
+        }
+        .dashboard {
             margin-top: 20px;
+        }
+        .card {
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .card-title {
+            font-size: 1.5rem;
+        }
+        .icon {
+            font-size: 3rem;
+        }
+        .contact-list {
+            margin-top: 20px;
+        }
+        .category-list{
+        marrgin-top:20px
         }
     </style>
 </head>
@@ -40,6 +61,11 @@
                     <span class="fa fa-address-book-o"></span> See Contacts
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" id="seeCategoryLink">
+                    <span class="fa fa-shopping-bag"></span> See Category
+                </a>
+            </li>
         </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
@@ -51,10 +77,70 @@
     </div>
 </nav>
 
+<!-- Dashboard -->
+<div class="container dashboard">
+    <div class="row">
+        <!-- Total Posts -->
+        <div class="col-md-4">
+            <div class="card text-center text-white bg-primary">
+                <div class="card-body">
+                    <i class="fa fa-file-text icon"></i>
+                    <h5 class="card-title">Total Posts</h5>
+                    <p class="card-text">
+                        <%-- Fetch total posts from the database --%>
+                        <%
+                            int totalPosts = 0; // Replace with actual DB query
+                            PostDao postDao=new PostDao(ConnectionProvider.getConnection());
+                            totalPosts=postDao.getPostCout();
+                            out.print(totalPosts);
+                        %>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- Total Categories -->
+        <div class="col-md-4">
+            <div class="card text-center text-white bg-success">
+                <div class="card-body">
+                    <i class="fa fa-list-alt icon"></i>
+                    <h5 class="card-title">Total Categories</h5>
+                    <p class="card-text">
+                        <%-- Fetch total categories from the database --%>
+                        <%
+                            int totalCategories = 0; // Replace with actual DB query
+                            PostDao posDao=new PostDao(ConnectionProvider.getConnection());
+                            totalCategories=posDao.getCatgoryCount();
+                            out.print(totalCategories);
+                        %>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- Total Contacts -->
+        <div class="col-md-4">
+            <div class="card text-center text-white bg-warning">
+                <div class="card-body">
+                    <i class="fa fa-envelope icon"></i>
+                    <h5 class="card-title">Total Contacts</h5>
+                    <p class="card-text">
+                        <%-- Fetch total contacts from the database --%>
+                        <%
+                            int totalContacts = 0; // Replace with actual DB query
+                           	ContactDao contactDao=new ContactDao(ConnectionProvider.getConnection());
+                            totalContacts=contactDao.getTotalContacts();
+                            out.print(totalContacts);
+                        %>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Contact List Div -->
 <div class="container">
-    <div id="contactList" class="contact-list">
-        <h3>ContactList</h3>
+    <div id="contactList" class="contact-list" style="display: none;">
+        <h3>Contact List</h3>
         <table class="table table-bordered">
             <thead>
             <tr>
@@ -69,6 +155,22 @@
             </tbody>
         </table>
     </div>
+    <!-- categories -->
+    <div id="categoryList" class="category-list" style="display: none;">
+        <h3>Category List</h3>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>C.Id</th>
+                <th>Name</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody id="categoryTableBody">
+            <!-- Contact list will be appended here -->
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.3.min.js" crossorigin="anonymous"></script>
@@ -77,7 +179,8 @@
         $('#seeContactsLink').click(function (e) {
             e.preventDefault();
 
-            // Show loading spinner or message
+         
+            $('#categoryList').hide();
             $('#contactList').show();
             $('#contactTableBody').html('<tr><td colspan="4">Loading...</td></tr>');
 
@@ -95,5 +198,31 @@
         });
     });
 </script>
+<script>
+    $(document).ready(function () { // Corrected syntax here
+        $('#seeCategoryLink').click(function (e) {
+            e.preventDefault();
+
+            // Show loading spinner or message
+            $('#contactList').hide();
+            $('#categoryList').show();
+            
+            $('#categoryTableBody').html('<tr><td colspan="3">Loading...</td></tr>'); // Updated colspan for categories
+
+            // Make AJAX request to fetch category data
+            $.ajax({
+                url: 'seeCategory.jsp', // Ensure this JSP file is correct
+                method: 'GET',
+                success: function (response) {
+                    $('#categoryTableBody').html(response);
+                },
+                error: function () {
+                    $('#categoryTableBody').html('<tr><td colspan="3">Error fetching categories.</td></tr>'); // Updated error message
+                }
+            });
+        });
+    });
+</script>
+
 </body>
 </html>

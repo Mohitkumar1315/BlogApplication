@@ -19,7 +19,7 @@
     <td><%= contact.getMessage() %></td>
     <td>
         <a href="">Delete</a> |
-        <a href="https://mail.google.com/mail/u/0/#inbox?compose=new">Revert</a>
+        <a href="https://mail.google.com/mail/u/0/#inbox/FMfcgzQXKWpRNkmdKXZbLRlFTtSVFNfh?compose=new">Revert</a>
     </td>
 </tr>
 <%

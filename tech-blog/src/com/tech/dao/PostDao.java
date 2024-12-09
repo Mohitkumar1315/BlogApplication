@@ -80,9 +80,24 @@ public class PostDao
     		p.setpTitle(set.getString("pTitle"));
     		p.setUser_id(set.getInt("user_id"));
     		postlist.add(p);
-    	}
-    
+    	}    
     	return  postlist;
+    }
+    public int getPostCout()
+    {
+    	int totalPost=0;
+    	try {
+			String query="select count(pId) from post";
+			Statement s=this.con.createStatement();
+			ResultSet set=s.executeQuery(query);
+			if(set.next())
+			{
+				totalPost=set.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	return totalPost;
     }
     public List<Post> getPostById(int cid ,int userId)
     {
@@ -168,6 +183,22 @@ public class PostDao
         }
         return postList;
     }
-
+    public int getCatgoryCount()
+    {
+    	int totalCategory=0;
+    	try {
+			String query="select count(cid) from categories";
+			Statement s=this.con.createStatement();
+			ResultSet set=s.executeQuery(query);
+			if(set.next())
+			{
+				totalCategory=set.getInt(1);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+    	return totalCategory;
+    }
 
 }
