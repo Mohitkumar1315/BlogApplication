@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="../CSS/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="../JS/admin.js"></script>
     <style>
         body {
             background-color: #f4f4f4;
@@ -61,17 +62,22 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#" id="seeContactsLink">
-                    <span class="fa fa-address-book-o"></span> See Contacts
+                    <span class="fa fa-address-book-o"></span>Contacts
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#" id="seeCategoryLink">
-                    <span class="fa fa-shopping-bag"></span> See Category
+                    <span class="fa fa-shopping-bag"></span> Categories
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#" id="seePostLink">
-                     <span class="fa fa-asterisk"></span>See Post
+                     <span class="fa fa-asterisk"></span>Posts
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" id="seePostLink">
+                     <span class="fa fa-user-o"></span>Users
                 </a>
             </li>
         </ul>
@@ -144,7 +150,21 @@
         </div>
     </div>
 </div>
+<!-- If there are  changes are do by the admin here show the message of success or failed -->
+<%
+    String success = request.getParameter("success");
+    String error = request.getParameter("error");
 
+    if ("deleted".equals(success)) {
+%>
+        <div class="alert alert-success"style="align-content: center">Contact deleted successfully.</div>
+<%
+    } else if ("notDeleted".equals(error)) {
+%>
+        <div class="alert alert-danger"style="align-content: center">Failed to delete contact. Try again.</div>
+<%
+    }
+%>
 <!-- Contact List Div -->
 <div class="container">
     <div id="contactList" class="contact-list" style="display: none;">
@@ -266,8 +286,6 @@ $(document).ready(function () {
         });
     });
 });
-
 </script>
-
 </body>
 </html>

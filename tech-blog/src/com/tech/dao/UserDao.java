@@ -1,8 +1,6 @@
 package com.tech.dao;
 import java.sql.*;
-
-import javax.servlet.http.HttpServletResponse;
-
+import java.util.*;
 import  com.tech.entities.*;
 public class UserDao 
 {
@@ -87,9 +85,7 @@ public class UserDao
 		} catch (Exception e)
 		{
 			e.printStackTrace();
-		}
-		
-		
+		}			
 		return user;
 	}
 	public boolean updateUser(User user)
@@ -111,5 +107,16 @@ public class UserDao
 		return f;
 		
 	}
-	
+	public List<User> getUser()
+	{
+		List<User>userlist=null;
+		try {
+			String query="select * from user";
+						
+		} catch (Exception e) 
+		{
+		
+		}
+		return userlist;
+	}
 }

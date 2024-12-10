@@ -8,7 +8,7 @@
 <%
     // Get the contact list from the database
     ContactDao contactDao = new ContactDao(ConnectionProvider.getConnection());
-    List<ContactUs> contactList = contactDao.getContactsByPage();
+    List<ContactUs> contactList = contactDao.getContactsByPage();	
 %>
 <%
     for (ContactUs contact : contactList) {
@@ -18,7 +18,7 @@
     <td><%= contact.getEmail() %></td>
     <td><%= contact.getMessage() %></td>
     <td>
-        <a href="">Delete</a> |
+        <a href="<%= request.getContextPath() %>/ContactUs_Servlet?email=<%= contact.getEmail() %>">Delete</a> |
         <a href="https://mail.google.com/mail/u/0/#inbox/FMfcgzQXKWpRNkmdKXZbLRlFTtSVFNfh?compose=new">Revert</a>
     </td>
 </tr>

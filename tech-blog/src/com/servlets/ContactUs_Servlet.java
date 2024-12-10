@@ -24,25 +24,20 @@ public class ContactUs_Servlet extends HttpServlet {
         super();
     }
 
-    protected void doGet(HttpServletRequest req, HttpServletResponse rep) throws ServletException, IOException {
-        rep.setContentType("application/json");
-        PrintWriter out = rep.getWriter();
-        ContactDao contactDao = new ContactDao(ConnectionProvider.getConnection());
-        List<ContactUs> contactList = contactDao.getContactsByPage();
+    protected void doGet(HttpServletRequest req, HttpServletResponse rep) throws ServletException, IOException 
+    {
+    	String email = req.getParameter("email");
+    	if (email == null || email.isEmpty()) {
+    	    rep.sendRedirect("adminProfile.jsp.jsp?error=invalidEmail");
+    	    return;
+    	}
+    	ContactDao contactDao = new ContactDao(ConnectionProvider.getConnection());
 
-        // Convert contactList to JSON
-        StringBuilder json = new StringBuilder("[");
-        for (int i = 0; i < contactList.size(); i++) {
-            ContactUs contact = contactList.get(i);
-            json.append(String.format(
-                "{\"name\":\"%s\", \"email\":\"%s\", \"message\":\"%s\"}",
-                contact.getName(), contact.getEmail(), contact.getMessage()
-            ));
-            if (i < contactList.size() - 1) json.append(",");
+        if (contactDao.deleteContactByMail(email)) {
+            rep.sendRedirect("Admin/adminProfile.jsp?success=deleted");
+        } else {
+            rep.sendRedirect("Admin/adminProfle.jsp?error=notDeleted");
         }
-        json.append("]");
-        out.print(json.toString());
-        out.flush();
     }
 
 

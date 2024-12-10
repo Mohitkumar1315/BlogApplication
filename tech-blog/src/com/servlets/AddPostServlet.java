@@ -40,9 +40,24 @@ public class AddPostServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
+		String postId=request.getParameter("pId");
+		if(postId==null||postId.isEmpty())
+		{
+			response.sendRedirect("Admin/adminProfile.jsp?error=Error in getting Post Id...!");
+
+		}
+		PostDao postDao=new PostDao(ConnectionProvider.getConnection());
+		if(postDao.deletePostByPostId(postId))
+		{
+			response.sendRedirect("Admin/adminProfile.jsp?success=Post is delete with id:"+postId+"");
+
+		}
+		else
+		{
+			response.sendRedirect("Admin/adminProfile.jsp?error=SQL ERRor...!");
+		}
 	}
 
 	/**

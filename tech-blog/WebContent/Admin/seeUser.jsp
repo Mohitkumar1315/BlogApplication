@@ -1,4 +1,3 @@
-<%@page import="com.tech.entities.Post"%>
 <%@page import="com.tech.dao.PostDao"%>
 <%@page import="com.tech.entities.ContactUs"%>
 <%@page import="com.tech.helper.ConnectionProvider"%>
@@ -9,18 +8,18 @@
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	PostDao postDao=new PostDao(ConnectionProvider.getConnection());
-	List<Post> postList=postDao.getAllPost();
+	List<Category> categoriesList=postDao.getCategories();
 %>
 <%
-    for (Post post : postList) {
+    for (Category catgory : categoriesList) {
 %>
 <tr>
-	<td><%=post.getPid()%></td>
-	<td><%=post.getpTitle()%></td>
-	<td><%=post.getUser_id() %></td> 
+	<td><%=catgory.getCid()%></td>
+	<td><%=catgory.getName()%></td>
     <td>
-        <a href="<%= request.getContextPath() %>/AddPostServlet?pId=<%= post.getPid()%>">Delete Post</a> |
-        <a href="">View Post</a>
+        <a href="">Delete</a> |
+        <a href="#">Update</a> |
+        <a href="#">Add</a>
     </td>
 </tr>
 <%

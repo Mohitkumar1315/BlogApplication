@@ -74,4 +74,23 @@ public class ContactDao {
         }
         return total;
     }
+    public boolean deleteContactByMail(String email)
+    {
+    	System.out.println("test...");
+    	boolean  deleteContactflag=false;
+    	try {
+			String query="delete from contactus where email=?";
+			PreparedStatement pst=this.con.prepareStatement(query);
+			pst.setString(1,email);
+			int deleteRow=pst.executeUpdate();
+			if(deleteRow>0)
+			{
+				deleteContactflag=true;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+    	return deleteContactflag;
+    }
 }
