@@ -1,27 +1,26 @@
+<%@page import="com.tech.entities.User"%>
+<%@page import="com.tech.dao.UserDao"%>
 <%@page import="com.tech.dao.PostDao"%>
-<%@page import="com.tech.entities.ContactUs"%>
 <%@page import="com.tech.helper.ConnectionProvider"%>
-<%@page import="com.tech.entities.Category"%>
-<%@page import="com.tech.dao.ContactDao"%>
-
 <%@page import="java.util.List"%>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+
 <%
-	PostDao postDao=new PostDao(ConnectionProvider.getConnection());
-	List<Category> categoriesList=postDao.getCategories();
+	UserDao userDao=new UserDao(ConnectionProvider.getConnection());
+	List<User>userList=userDao.getUser();
+	System.out.println("UserList:"+userList);
 %>
 <%
-    for (Category catgory : categoriesList) {
+for (User user : userList) {
 %>
 <tr>
-	<td><%=catgory.getCid()%></td>
-	<td><%=catgory.getName()%></td>
-    <td>
-        <a href="">Delete</a> |
-        <a href="#">Update</a> |
-        <a href="#">Add</a>
-    </td>
+<td><%= user.getId() %></td>
+<td><%= user.getName() %></td>
+<td><%= user.getEmail() %></td>
+<td>
+    <a href="#">Delete</a> |
+    <a href="#">View</a>
+</td>
 </tr>
-<%
-    }
-%>
+<% } %>

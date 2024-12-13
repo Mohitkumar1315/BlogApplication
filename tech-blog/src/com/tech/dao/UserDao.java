@@ -109,13 +109,32 @@ public class UserDao
 	}
 	public List<User> getUser()
 	{
-		List<User>userlist=null;
+		List<User>userlist=new ArrayList<User>();
 		try {
 			String query="select * from user";
+			Statement s=this.con.createStatement();
+			ResultSet set=s.executeQuery(query);
+			while(set.next())
+			{
+				User user=new User();
+				int id=set.getInt("id");
+				String name=set.getString("name");
+				String email=set.getString("email");
+				String password=set.getString("password");
+				String gender=set.getString("gender");
+				String about=set.getString("about");
+				Timestamp rdate=set.getTimestamp("rdate");
+				String profile=set.getString("profile");
+				String userRole=set.getString("user_role");
+				user.setId(id);
+				user.setAbout(about);user.setEmail(email);user.setGender(gender);user.setName(name);
+				user.setPassword(password);user.setProfile(profile);user.setRdate(rdate);user.setUserRole(userRole);
+				userlist.add(user);
+			}
 						
 		} catch (Exception e) 
 		{
-		
+			e.printStackTrace();
 		}
 		return userlist;
 	}

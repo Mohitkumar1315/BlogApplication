@@ -38,6 +38,8 @@
         .post-list{
         marrgin-top:30px
         }
+        .user-list{
+        margin:30x}
     </style>
 </head>
 <body>
@@ -76,7 +78,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" id="seePostLink">
+                <a class="nav-link" href="#" id="seeUserLink">
                      <span class="fa fa-user-o"></span>Users
                 </a>
             </li>
@@ -201,7 +203,7 @@
     </div>
     <!-- Post -->
     <div id="postList" class="post-list" style="display: none;">
-        <h3>Category List</h3>
+        <h3>Post List</h3>
         <table class="table table-bordered">
             <thead>
             <tr>
@@ -216,8 +218,24 @@
             </tbody>
         </table>
     </div>
+    <!--Users-->
+    <div id="userList" class="user-list" style="display: none;">
+        <h3>Post List</h3>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Post.Id</th>
+                <th>Title</th>
+                <th>User Name</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody id="userTableBody">
+      			<!-- Post is show here dyanmically using ajax request -->
+            </tbody>
+        </table>
+    </div>
 </div>
-
 <script src="https://code.jquery.com/jquery-3.6.3.min.js" crossorigin="anonymous"></script>
 <script>
 $(document).ready(function () {
@@ -226,6 +244,7 @@ $(document).ready(function () {
 
         $('#categoryList').hide();
         $('#postList').hide(); // Hide post list as well
+        $('#userList').hide();
         $('#contactList').show();
         $('#contactTableBody').html('<tr><td colspan="4">Loading...</td></tr>');
 
@@ -249,6 +268,7 @@ $(document).ready(function () {
         
         $('#contactList').hide();
         $('#categoryList').hide();
+        $('#userList').hide();
         $('#postList').show();
         $('#postTableBody').html('<tr><td colspan="4">Loading...</td></tr>'); // Ensure the colspan matches the table structure
 
@@ -270,6 +290,7 @@ $(document).ready(function () {
 
         $('#contactList').hide();
         $('#postList').hide(); // Hide post list as well
+        $('#userList').hide();
         $('#categoryList').show();
         $('#categoryTableBody').html('<tr><td colspan="3">Loading...</td></tr>'); // Adjusted colspan
 
@@ -285,7 +306,31 @@ $(document).ready(function () {
             }
         });
     });
+    
+    $('#seeUserLink').click(function (e) {
+        e.preventDefault();
+
+        $('#contactList').hide();
+        $('#postList').hide(); // Hide post list as well
+        $('#categoryList').hide();
+        $('#userList').show();
+        $('#userTableBody').html('<tr><td colspan="3">Loading...</td></tr>'); // Adjusted colspan
+
+        // Make AJAX request to fetch category data
+        $.ajax({
+            url: 'seeUser.jsp', // Ensure this JSP file is correct
+            method: 'GET',
+            success: function (response) {
+                $('#userTableBody').html(response);
+            },
+            error: function () {
+                $('#categoryTableBody').html('<tr><td colspan="3">Error fetching categories.</td></tr>'); // Adjusted colspan
+            }
+        });
+    });
+    
 });
+
 </script>
 </body>
 </html>

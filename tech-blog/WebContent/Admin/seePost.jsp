@@ -4,7 +4,6 @@
 <%@page import="com.tech.helper.ConnectionProvider"%>
 <%@page import="com.tech.entities.Category"%>
 <%@page import="com.tech.dao.ContactDao"%>
-
 <%@page import="java.util.List"%>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
@@ -26,3 +25,4 @@
 <%
     }
 %>
+
