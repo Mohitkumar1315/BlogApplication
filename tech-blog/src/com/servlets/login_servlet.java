@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.tech.dao.PostDao;
 import com.tech.dao.UserDao;
 import com.tech.entities.Message;
 import com.tech.entities.User;
@@ -18,7 +19,8 @@ import com.tech.helper.JwtHelper;
 public class login_servlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    protected void doPost(HttpServletRequest req, HttpServletResponse rep) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse rep) throws ServletException, IOException 
+    {
         rep.setContentType("application/json");
         PrintWriter out = rep.getWriter();
 
@@ -55,4 +57,26 @@ public class login_servlet extends HttpServlet {
             }
         }
     }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
+    	String UserId=request.getParameter("uId");
+    	System.out.println("userId:"+UserId);
+    	if(UserId==null||UserId.isEmpty())
+    	{
+    		response.sendRedirect("Admin/adminProfile.jsp?success=Post is delete with id:"+UserId+"");
+    	}
+    	System.out.println("Test1....");
+    	PostDao postDao=new PostDao(ConnectionProvider.getConnection());
+    	UserDao userDao=new UserDao(ConnectionProvider.getConnection());
+    	if(postDao.deletePostByUserId(UserId)&&userDao.deleteUser(UserId))
+    	{
+    		System.out.println("Test2....");
+    		response.sendRedirect("Admin/adminProfile.jsp?success=Post is delete with id:"+UserId+"");
+    	}
+    	else
+    	{
+    		System.out.println("Test3....");
+    		response.sendRedirect("Admin/adminProfile.jsp?error=SQL ERRor...!");
+    	}
+	}
 }

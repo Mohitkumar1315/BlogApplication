@@ -138,4 +138,26 @@ public class UserDao
 		}
 		return userlist;
 	}
+	public boolean deleteUser(String userId)
+	{
+		if (userId == null || userId.isEmpty()) {
+    	    throw new IllegalArgumentException("User ID cannot be null or empty");
+    	}
+		System.out.println("You are in Delete User method in UserDao");
+		int userid=Integer.parseInt(userId);
+		boolean isUserDelete=false;
+		try {
+			String query="delete from user where id=?";
+			PreparedStatement pst=this.con.prepareStatement(query);
+			pst.setInt(1, userid);
+			int deleteUser=pst.executeUpdate();
+			if(deleteUser>0)
+			{
+				isUserDelete=true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return isUserDelete;
+	}
 }

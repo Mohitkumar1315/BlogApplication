@@ -220,7 +220,7 @@
     </div>
     <!--Users-->
     <div id="userList" class="user-list" style="display: none;">
-        <h3>Post List</h3>
+        <h3>User List</h3>
         <table class="table table-bordered">
             <thead>
             <tr>

@@ -19,7 +19,7 @@ for (User user : userList) {
 <td><%= user.getName() %></td>
 <td><%= user.getEmail() %></td>
 <td>
-    <a href="#">Delete</a> |
+    <a href="<%= request.getContextPath() %>/login_servlet?uId=<%=user.getId()%>">Delete</a> |
     <a href="#">View</a>
 </td>
 </tr>

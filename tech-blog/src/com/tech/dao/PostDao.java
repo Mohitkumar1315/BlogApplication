@@ -219,4 +219,26 @@ public class PostDao
 		}
     	return isPostDelete;   	
     }
+    public boolean deletePostByUserId(String userid)
+    {
+    	if (userid == null || userid.isEmpty()) {
+    	    throw new IllegalArgumentException("User ID cannot be null or empty");
+    	}
+    	System.out.println("You are in Delete User method in PostDao");
+    	boolean isPostDelete=false;
+    	int userId=Integer.parseInt(userid);
+    	try {
+			String query="delete from post where user_id=?";
+			PreparedStatement pst=this.con.prepareStatement(query);
+			pst.setInt(1, userId);
+			int deletePost=pst.executeUpdate();
+			if(deletePost>0)
+			{
+				isPostDelete=true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	return isPostDelete;
+    }
 }
