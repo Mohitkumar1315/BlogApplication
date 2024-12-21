@@ -241,4 +241,24 @@ public class PostDao
 		}
     	return isPostDelete;
     }
+    public boolean deleteAllPostByCategory(int catId)
+    {   	
+    	boolean isdeleted=false;
+    	//int catid=Integer.parseInt(catId);
+    	try {
+			String query="delete from post where catId=?";
+			PreparedStatement pst=this.con.prepareStatement(query);
+			pst.setInt(1, catId);
+			int deletepost=pst.executeUpdate();
+			if(deletepost>0)
+			{
+				isdeleted=true;
+			}
+    	} catch (Exception e)
+    	{
+			e.printStackTrace();
+		}
+    	
+    	return isdeleted;
+    }
 }

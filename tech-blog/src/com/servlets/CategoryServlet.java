@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.tech.dao.CategoryDao;
+import com.tech.dao.PostDao;
 import com.tech.entities.Category;
 import com.tech.helper.ConnectionProvider;
 
@@ -29,9 +30,9 @@ public class CategoryServlet extends HttpServlet {
         System.out.println("Received cid: " + request.getParameter("cid"));
 
         try {
-            // Initialize DAO
+            
             CategoryDao categoryDao = new CategoryDao(ConnectionProvider.getConnection());
-
+            PostDao postDao=new PostDao(ConnectionProvider.getConnection());
             switch (action) {
                 case "add":
                 	System.out.println("Test in categoriey for add..");
@@ -50,7 +51,7 @@ public class CategoryServlet extends HttpServlet {
                     // Delete a category by ID
                     int cidToDelete = Integer.parseInt(request.getParameter("cid"));
                     System.out.print("Test in Category for delete"+cidToDelete);
-                    if (categoryDao.deleteCategory(cidToDelete)) {
+                    if (postDao.deleteAllPostByCategory(cidToDelete)|| categoryDao.deleteCategory(cidToDelete)) {
                     	response.sendRedirect("Admin/adminProfile.jsp?success=deleted");
                     } else {
                     	response.sendRedirect("Admin/adminProfle.jsp?error=notDeleted");
