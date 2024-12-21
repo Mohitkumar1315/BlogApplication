@@ -187,15 +187,8 @@
     </div>
     <!-- categories -->
     <div id="categoryList" class="category-list" style="display: none;">
-        <h3>Category List</h3>
         <table class="table table-bordered">
-            <thead>
-            <tr>
-                <th>C.Id</th>
-                <th>Name</th>
-                <th>Action</th>
-            </tr>
-            </thead>
+            
             <tbody id="categoryTableBody">
       			<!-- categorie is show here dyanmically using ajax request -->
             </tbody>
