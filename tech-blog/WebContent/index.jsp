@@ -96,7 +96,7 @@
                     <p><strong>!! Happy Coding !!</strong></p>
                 </div>
 
-                <!-- Products -->
+                <!-- . Products -->
                 <div class="col-md-4">
                     <h5 class="mb-3">Products</h5>
                     <ul class="list-unstyled">

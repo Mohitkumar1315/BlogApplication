@@ -13,9 +13,7 @@ public class CategoryDao {
     public CategoryDao(Connection con) {
         this.con = con;
     }
-
-    // Add a new category
-    public boolean addCategory(Category category) {
+   public boolean addCategory(Category category) {
         boolean isAdded = false;
         try {
             String query = "INSERT INTO categories (name, description) VALUES (?, ?)";
@@ -30,7 +28,6 @@ public class CategoryDao {
         return isAdded;
     }
 
-    // Delete a category by ID
     public boolean deleteCategory(int cid) {
         boolean isDeleted = false;
 
@@ -58,11 +55,11 @@ public class CategoryDao {
         return isDeleted;
     }
 
-    // Update a category by ID
     public boolean updateCategory(int cid, String newName, String newDescription) {
         boolean isUpdated = false;
         try {
-            String query = "UPDATE category SET name=?, description=? WHERE cid=?";
+        	System.out.println("you are in UpdateCategoryies");
+            String query = "UPDATE categories SET name=?, description=? WHERE cid=?";
             try (PreparedStatement pst = con.prepareStatement(query)) {
                 pst.setString(1, newName);
                 pst.setString(2, newDescription);
@@ -75,7 +72,7 @@ public class CategoryDao {
         return isUpdated;
     }
 
-    // Retrieve all categories
+
     public List<Category> getCategories() {
         List<Category> categories = new ArrayList<>();
         try {

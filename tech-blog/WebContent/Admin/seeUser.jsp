@@ -20,7 +20,12 @@ for (User user : userList) {
 <td><%= user.getEmail() %></td>
 <td>
     <a href="<%= request.getContextPath() %>/login_servlet?uId=<%=user.getId()%>">Delete</a> |
-    <a href="#">View</a>
+    <a class="nav-link" href="#!" data-toggle="modal" data-target="#profile_details">
+               <span class="fa fa-user-circle"> </span>
+               <input type="hidden" name="userId" value="<%=user.getId() %>>">
+               <span>View User</span>
+       </a>
 </td>
 </tr>
+
 <% } %>

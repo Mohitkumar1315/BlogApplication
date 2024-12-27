@@ -13,13 +13,12 @@ import com.tech.entities.Post;
 
 public class PostDao 
 {
+	
     private Connection con;
-
     public PostDao(Connection con)
     {
         this.con = con;
     }
-
     public ArrayList<Category> getCategories()
     {
         ArrayList<Category> categoriesList = null;
@@ -183,7 +182,7 @@ public class PostDao
         }
         return postList;
     }
-    public int getCatgoryCount()
+    public int getCatgoryCont()
     {
     	int totalCategory=0;
     	try {

@@ -125,7 +125,7 @@
                         <%
                             int totalCategories = 0; // Replace with actual DB query
                             PostDao posDao=new PostDao(ConnectionProvider.getConnection());
-                            totalCategories=posDao.getCatgoryCount();
+                            totalCategories=posDao.getCatgoryCont();
                             out.print(totalCategories);
                         %>
                     </p>

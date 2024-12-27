@@ -74,12 +74,23 @@
                 </p>
                 <span class="badge badge-gradient-success">Tutorial</span>
             </div>
-            <button class="read-more-btn" onclick="readMore(<%= p.getPid() %>)">
-                Read More
-            </button>
+           <button class="read-more-btn">
+   				 <a href="Allshow_blog_page.jsp?post_id=<%= p.getPid() %>">Read More</a>
+		  </button>
+
+
+            
         </div>
     <%
         }
     %>
+    <script>
+    function readMore(postId) 
+    {
+    	//console.log(postId);
+        // Redirect to the desired page with the post_id
+       // window.location.href = `Allshow_blog_page.jsp?post_id=${postId}`;
+    }
+</script>
 </body>
 </html>
