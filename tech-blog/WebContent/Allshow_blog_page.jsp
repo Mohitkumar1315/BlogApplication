@@ -59,7 +59,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="User_profile.jsp">
+                    <a class="nav-link" href="#">
                         <span class="fa fa-home"></span> mk1315codes_learning <span class="sr-only">(current)</span>
                     </a>
                 </li>
@@ -116,30 +116,6 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- Comment Modal -->
-    <div class="modal fade" id="DoComment" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"><span style="color: red; font-weight: bold;">mk</span> Codes1315_learning</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="DoCommentServlet" id="do-comment" method="post">
-                        <div class="form-group">
-                            <input type="text" name="Comment" placeholder="Comment..." class="form-control">
-                        </div>
-                        <div class="container text-center">
-                            <button type="submit" class="btn btn-outline-primary">Submit</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    </div>    
 </body>
 </html>

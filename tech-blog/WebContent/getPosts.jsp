@@ -75,7 +75,7 @@
                 <span class="badge badge-gradient-success">Tutorial</span>
             </div>
            <button class="read-more-btn">
-   				 <a href="Allshow_blog_page.jsp?post_id=<%= p.getPid() %>">Read More</a>
+   				 <a href="Allshow_blog_page.jsp?post_id=<%= p.getPid()%>" style="text-decoration: none;color:white">Read More</a>
 		  </button>
 
 
