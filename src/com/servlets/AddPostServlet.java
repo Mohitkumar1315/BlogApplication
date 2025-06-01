@@ -32,7 +32,7 @@ public class AddPostServlet extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddPostServlet() {
+    public AddPostServlet() { //
         super();
         // TODO Auto-generated constructor stub
     }
