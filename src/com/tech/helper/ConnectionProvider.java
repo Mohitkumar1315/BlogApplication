@@ -5,13 +5,13 @@ import java.sql.DriverManager;
 
 public class ConnectionProvider {
     private static Connection con;
-
+//
     public static Connection getConnection() {
         try {
             if (con == null || con.isClosed()) {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 // Use Railway's MySQL URL, user, and password here
-                String url = "jdbc:mysql://tramway.proxy.rlwy.net:19045/railway";
+                String url = "mysql://root:LUdkBQVHTJofYxynCqROfnLOwWnKiYXu@mysql.railway.internal:3306/railway";
                 String user = "root";
                 String password = "LUdkBQVHTJofYxynCqROfnLOwWnKiYXu";
 
@@ -24,3 +24,25 @@ public class ConnectionProvider {
         return con;
     }
 }
+//package com.tech.helper;
+//import java.sql.*;
+//public class ConnectionProvider 
+//{
+//	private static Connection con;
+//	public static  Connection getConnection()
+//	{
+//		try 
+//		{
+//			if(con==null)
+//			{
+//				Class.forName("com.mysql.cj.jdbc.Driver");
+//			    con=DriverManager.getConnection("jdbc:mysql://localhost:3306/techBlock_jsp","root","root");
+//				//System.out.println("Connected...");
+//			}
+//		}
+//		catch(Exception ex)
+//		{
+//			System.out.println(ex);
+//		}
+//		return con;
+//	}

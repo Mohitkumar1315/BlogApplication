@@ -66,11 +66,15 @@
             <div class="col-md-3" id="sidebar">
                 <div class="list-group">
                     <a href="#" onclick="getPost(0, this)" class="category-link list-group-item list-group-item-action active-category" aria-current="true">All Posts</a>
-                    <% for (Category cat : catList) { %>
-                        <a href="#" onclick="getPost(<%= cat.getCid() %>, this)" class="category-link list-group-item list-group-item-action" aria-current="true">
-                            <%= cat.getName() %>
-                        </a>
-                    <% } %>
+                    <% if (catList != null) {
+     for (Category cat : catList) { %>
+     <a href="#" onclick="getPost(<%= cat.getCid() %>, this)" class="category-link list-group-item list-group-item-action">
+         <%= cat.getName() %>
+     </a>
+<%  }
+   } else { %>
+   <p class="text-danger">Category list not available.</p>
+<% } %>
                 </div>
             </div>
 
