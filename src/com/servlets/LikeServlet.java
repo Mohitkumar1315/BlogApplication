@@ -23,7 +23,7 @@ public class LikeServlet extends HttpServlet {
      * @see HttpServlet#HttpServlet()
      */
     public LikeServlet() {
-        super();
+        super();//
         // TODO Auto-generated constructor stub
     }
 
